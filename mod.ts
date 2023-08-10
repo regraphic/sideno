@@ -1,12 +1,12 @@
 import {loadImage, createCanvas} from "./deps.ts";
 
-interface ImageTextFont {
+export interface ImageTextFont {
     src: ArrayBuffer,
     alias: string,
     family: string,
 }
 
-interface ImageTextComponent {
+export interface ImageTextComponent {
     text: string,
     posX: number,
     posY: number,
@@ -14,7 +14,7 @@ interface ImageTextComponent {
     color: string
 }
 
-class Font {
+export class Font {
     src: string | ArrayBuffer;
     alias: string;
     family: string;
@@ -84,5 +84,6 @@ export class Image {
 
 export default {
     Font,
-    Image
+    Image,
+    VERSION: "v1.0.1"
 }
