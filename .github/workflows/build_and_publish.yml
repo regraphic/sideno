@@ -56,7 +56,7 @@ jobs:
           RELEASE_VERSION: ${{ steps.read_version.outputs.version }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "Rajdeep Malakar"
+          git config user.email "rajdeepm.dev@gmail.com"
           git tag $RELEASE_VERSION
           git push origin $RELEASE_VERSION
