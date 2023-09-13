@@ -54,6 +54,7 @@ jobs:
       - name: Create a new tag
         env:
           RELEASE_VERSION: ${{ steps.read_version.outputs.version }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
