@@ -1,0 +1,61 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          export PATH="$HOME/.cargo/bin:$PATH"
+          rustc --version
+          cargo --version
+
+      - name: Install wasm-pack
+        run: |
+          curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+          wasm-pack --version
+
+      - name: Install Deno
+        run: |
+          curl -fsSL https://deno.land/x/install/install.sh | sh
+          export DENO_INSTALL="$HOME/.deno"
+          export PATH="$DENO_INSTALL/bin:$PATH"
+          deno --version
+
+      - name: Clone repository
+        run: git clone https://github.com/regraphic/si-rs rs
+
+      - name: Build wasm-pack
+        working-directory: ./rs
+        run: |
+          wasm-pack build --target deno --no-default-features --features async
+          mv -f pkg ../
+
+      - name: Cleanup
+        run: |
+          cd ..
+          rm -rf rs pkg/README.md pkg/.gitignore
+
+      - name: Read version from release.json
+        id: read_version
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y jq
+          echo "::set-output name=version::$(jq -r .version release.json)"
+
+      - name: Create a new tag
+        env:
+          RELEASE_VERSION: ${{ steps.read_version.outputs.version }}
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git tag $RELEASE_VERSION
+          git push origin $RELEASE_VERSION

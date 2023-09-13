@@ -1,82 +1,89 @@
-# ShareImage
-![Card](https://shimg.zype.cf/v1/image?title=Generate%20Social%20Share%20Images%20Dynamically!&cloudName=zype&imagePublicID=ShareImage/Docs-Card)
+# ShareImage (or SI)
+
+SI (pronounced `ess-eye`) is a Social Share Preview Image Generator.
+
+Don't get it? Well, it's the "thumbnail" of a website, or link, or anything.
+
 ## Installation
-There is currently 2 Langauges Supported: **Python** and **Node.js**
-And there is a **API** available to use with your project!
-### API (Beta, WIP)
-The API is currently in beta and may have some issues.
-The domain of the API is https://shimg.zype.cf/v1
-Currently, the V2 of ShareImage is only available for the Node.JS (with CommonJS, ESM and TypeScript support) and Deno library
-#### Endpoints
-There is currently only one endpoint available:
-##### GET `/image`
-It needs Query Params in the following format:
-https://shimg.zype.cf/v1/image?paramName=paramValue
-The paramaters are as same as **Node.js** Params!
-### Python
-To Install ShareImage in Python with *PIP* Run:
+
+Installing is easy. It's just the matter of a few commands.
+
+## Node.JS
+
+In Node.JS, you can use the good'ol `shareimage` package. The `v5.*.*` versions of this package support TS and uses `canvas` package (which uses native code).  I'm working on the new `v6` of this one, which would use WASM. This will be available as `@rg.dev/si` as well.
+
 ```sh
-pip install ShareImage
+npm i shareimage
 ```
-### Node.js
-To Install ShareImage in Node.js with *NPM* Run:
-```sh
-npm i shareimage --save
-```
-Or, with *Yarn*:
+
+Or:
+
 ```sh
 yarn add shareimage
 ```
-## Usage
-Using ShareImage is a bit different across Languages.
-### Python
-Use the Following Code to Generate a Image and print it's URL in Python:
-```py
-from ShareImage import ShareImage
 
-image = ShareImage(
-    title = "My Test Image",
-    cloudName = "myCloud",
-    imagePublicId = "myFolder/myImage"
-)
+## Deno
 
-print(image)
-```
-### Node.js
-Use the Following Code to Generate a Image and output it's URL in Node.js (ES6):
-```js
-import * as ShareImage from 'shareimage';
+In Deno, you can use the `sideno` package. `v1.*.*` versions of this package use the `canvas` package (WASM). This new `v2` uses the `si-img` Rust crate (WASM)!
 
-const image = await ShareImage.generateImage(
-    "/path/to/image.png",
-    "My awesome title",
-    { type: "datauri" }
-)
+The `v2` is **~6 times** faster than `v1`!
 
-console.log(image)
-```
+To use it, simply import it from [deno.land](https://deno.land/x/sideno):
 
-### Deno
-You can use the [`sideno`](https://deno.land/x/sideno) library to use ShareImage in Deno!
-Example:
 ```ts
-import SI from "https://deno.land/x/sideno@VERSION/mod.ts";
-let img = new SI.Image("URL/Buffer of Image");
+import si from "https://deno.land/x/sideno/mod.ts"; // LATEST VERSION
+```
 
-img.title.text = "Your desired title";
-img.tagline.text = "Your desired tagline";
+## Usage
 
-let out = await img.export("buffer");
-await Deno.writeFile("out.png", out);
+The new `v2` of this package is a written from scratch one, and yes, it's a breaking change.
+
+Here's how to use it *now*:
+
+```ts
+import si from "https://deno.land/x/sideno/mod.ts";
+
+let img = new si.Image("IMG_URL_OR_UINT8ARRAY_BUFFER", "INITIAL_FONT_URL_OR_UINT8ARRAY_BUFFER"); // Font is now required;
+await img.init(); // Required
+
+img
+    .text("Hello, Title", 64, 480, 254)
+    .text("Hello, tagline", 48, 480, 320);
+    // Supports chaining!
+
+let bytes = img.as_bytes;
+let duri = img.as_base64;
 ```
 
 ## Docs
-Coming Soon...
+
+Coming soon...
+
+## Building
+
+Building it is easy, it just takes *some* time.
+
+### Requirements
+
+It depends on the [`si-rs`](https://github.com/regraphic/si-rs) project, which is written in Rust. So, you need them:
+
+- Rust `wasm32-unknown-unknown` toolchain (+ Cargo)
+- `wasm-pack` CLI (for easy building)
+- Some patience
+
+To build it, simply run the `scripts/build.ts` script with Deno:
+
+```ts
+deno run -Ar scripts/build.ts
+```
+
+Once done, you'll have a `pkg` directory ready. That's all it needs.
 
 ## Sponsors
+
 We have been sponsored by **Vercel**, **MacStadium**.  
 Vercel gave us free **Pro Plan** access to host the documentation and other websites.  
-MacStadium gave us free **Mac Mini Server** to host the API and for builds.  
+MacStadium gave us free **Mac Mini Server** to host the API and for builds.
 
 [![Powered By Vercel](https://res.cloudinary.com/zype/image/upload/ShareImage/powered-by-vercel.png)](https://vercel.com/?utm_source=zypeoss&utm_campaign=oss)
 
