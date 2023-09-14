@@ -43,7 +43,7 @@ Here's how to use it *now*:
 ```ts
 import si from "https://deno.land/x/sideno/mod.ts";
 
-let img = new si.Image("IMG_URL_OR_UINT8ARRAY_BUFFER", "INITIAL_FONT_URL_OR_UINT8ARRAY_BUFFER"); // Font is now required;
+let img = new si.Image("IMG_URL_OR_UINT8ARRAY_BUFFER", new si.Font("INITIAL_FONT_URL_OR_UINT8ARRAY_BUFFER")); // Font is now required;
 await img.init(); // Required
 
 img
