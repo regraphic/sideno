@@ -3,7 +3,8 @@ name: Build and Release
 on:
   workflow_dispatch:
 
-permissions: read-all|write-all
+permissions:
+    contents: read|write
 
 jobs:
   build:
