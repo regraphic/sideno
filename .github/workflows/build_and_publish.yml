@@ -36,7 +36,7 @@ jobs:
       - name: Clone repository
         run: git clone https://github.com/regraphic/si-rs rs
 
-      - name: Build wasm-pack
+      - name: Build si-rs with wasm-pack
         working-directory: ./rs
         run: |
           wasm-pack build --target deno --no-default-features --features async
@@ -44,6 +44,7 @@ jobs:
 
       - name: Cleanup
         run: |
+          pwd
           cd ..
           rm -rf rs pkg/README.md pkg/.gitignore
 
@@ -63,5 +64,6 @@ jobs:
           git config user.email "rajdeepm.dev@gmail.com"
           git add -A
           git commit -m "Release $RELEASE_VERSION"
+          ls -la
           git tag $RELEASE_VERSION -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_VERSION
