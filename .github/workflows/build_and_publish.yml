@@ -59,8 +59,9 @@ jobs:
           RELEASE_VERSION: ${{ steps.read_version.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls pkg -la
           git config user.name "Rajdeep Malakar"
           git config user.email "rajdeepm.dev@gmail.com"
-          git tag $RELEASE_VERSION
+          git add -A
+          git commit -m "Release $RELEASE_VERSION"
+          git tag $RELEASE_VERSION -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_VERSION
