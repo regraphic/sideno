@@ -61,6 +61,6 @@ jobs:
         run: |
           git config user.name "Rajdeep Malakar"
           git config user.email "rajdeepm.dev@gmail.com"
-          ls -la
+          cat .gitignore
           git tag $RELEASE_VERSION -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_VERSION
