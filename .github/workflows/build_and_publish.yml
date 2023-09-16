@@ -44,7 +44,6 @@ jobs:
 
       - name: Cleanup
         run: |
-          pwd
           cd ..
           rm -rf rs pkg/README.md pkg/.gitignore
 
@@ -64,6 +63,5 @@ jobs:
           git config user.email "rajdeepm.dev@gmail.com"
           git add -A
           git commit -m "Release $RELEASE_VERSION"
-          ls -la
           git tag $RELEASE_VERSION -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_VERSION
