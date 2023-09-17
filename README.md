@@ -36,6 +36,8 @@ import si from "https://deno.land/x/sideno/mod.ts"; // LATEST VERSION
 
 ## Usage
 
+> Note: Please use **v2.0.2** or higher versions, because **v2.0.0** and **v2.0.1** has a critical bug preventing it from even working.
+
 The new `v2` of this package is a written from scratch one, and yes, it's a breaking change.
 
 Here's how to use it *now*:
