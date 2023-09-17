@@ -8,9 +8,9 @@ export class Image {
 
     constructor(src: string | Uint8Array, font: Font) {
         if (typeof src === "string") {
-            this.#img = new Promise<SiImage>(async resolve => resolve(await new SiImage(src, await font.font, undefined)));
+            this.#img = new Promise<SiImage>(async resolve => resolve(await SiImage.from_network_async(src, await font.font)));
         } else {
-            this.#img = new Promise<SiImage>(async resolve => resolve(await new SiImage("", await font.font, src)));
+            this.#img = new Promise<SiImage>(async resolve => resolve(new SiImage(src, await font.font)));
         }
     }
 
@@ -70,7 +70,7 @@ export class Image {
      * @return {Uint8Array} The image data as a Uint8Array (Buffer).
      */
     get as_bytes(): Uint8Array {
-        return this.img?.as_bytes || new Uint8Array();
+        return this.img?.to_bytes() || new Uint8Array();
     }
 
     /**
@@ -79,8 +79,8 @@ export class Image {
      * @return {string} The base64 representation of the image.
      */
     get as_base64(): string {
-        return encodeB64(this.img?.as_bytes || new Uint8Array());
+        return encodeB64(this.img?.to_bytes() || new Uint8Array());
     }
 }
 
-export default {Image};
+export default Image;
