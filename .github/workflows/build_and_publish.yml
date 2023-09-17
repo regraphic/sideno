@@ -33,19 +33,9 @@ jobs:
           export PATH="$DENO_INSTALL/bin:$PATH"
           deno --version
 
-      - name: Clone repository
-        run: git clone https://github.com/regraphic/si-rs rs
-
-      - name: Build si-rs with wasm-pack
-        working-directory: ./rs
+      - name: Build
         run: |
-          wasm-pack build --target deno --no-default-features --features async
-          mv -f pkg ../
-
-      - name: Cleanup
-        run: |
-          cd ..
-          rm -rf rs pkg/README.md pkg/.gitignore
+          deno run -Ar scripts/build.ts
 
       - name: Read version from release.json
         id: read_version
