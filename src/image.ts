@@ -1,7 +1,7 @@
 import { SiImage } from "../deps.ts";
 import Font from "./font.ts";
 import {encodeB64} from "../deps.ts";
-
+import { Preset } from "./preset.ts";
 export class Image {
     img?: SiImage;
     #img: Promise<SiImage>;
@@ -36,8 +36,8 @@ export class Image {
      * @return {Promise<Image>} - The updated image.
      */
     async text(text: string, scale: number, x: number, y: number, color = "#000000", font: Font): Promise<Image> {
-        this.img = this.img?.text(text, scale, x, y, color, await font.font);
         if (!this.img) throw new Error("Image is empty");
+        this.img = this.img?.text(text, scale, x, y, color, await font.font);
         return this;
     }
 
@@ -50,8 +50,8 @@ export class Image {
      * @return {Promise<Image>} - The updated image.
      */
     async image(img: Image, x: number, y: number): Promise<Image> {
-        this.img = this.img?.image(await img.#img, BigInt(x), BigInt(y));
         if (!this.img) throw new Error("Image is empty");
+        this.img = this.img?.image(await img.#img, BigInt(x), BigInt(y));
         return this;
     }
 
@@ -71,6 +71,13 @@ export class Image {
      */
     get as_base64(): string {
         return encodeB64(this.img?.to_bytes() || new Uint8Array());
+    }
+
+    async preset(preset: Preset, values: object): Promise<Image> {
+        if (!this.img) throw new Error("Image is empty");
+        const final = await preset.cb(this, values);
+        this.img = final.img;
+        return this;
     }
 
     resize(width: number, height: number): Image {
