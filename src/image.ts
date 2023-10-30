@@ -6,11 +6,11 @@ export class Image {
     img?: SiImage;
     #img: Promise<SiImage>;
 
-    constructor(src: string | Uint8Array, font: Font) {
+    constructor(src: string | Uint8Array) {
         if (typeof src === "string") {
-            this.#img = new Promise<SiImage>(async resolve => resolve(await SiImage.from_network_async(src, await font.font)));
+            this.#img = new Promise<SiImage>(async resolve => resolve(await SiImage.from_network_async(src)));
         } else {
-            this.#img = new Promise<SiImage>(async resolve => resolve(new SiImage(src, await font.font)));
+            this.#img = new Promise<SiImage>(async resolve => resolve(await SiImage.from_vec(src)));
         }
     }
 
@@ -32,35 +32,26 @@ export class Image {
      * @param {number} x - The x-coordinate of the text.
      * @param {number} y - The y-coordinate of the text.
      * @param {string} color - The color of the text (optional, default value is #000000).
-     * @return {Image} - The updated image.
+     * @param {Font} font - The font to use
+     * @return {Promise<Image>} - The updated image.
      */
-    text(text: string, scale: number, x: number, y: number, color = "#000000"): Image {
-        this.img = this.img?.text(text, scale, x, y, color);
-        if (!this.#img) throw new Error("Image is empty");
+    async text(text: string, scale: number, x: number, y: number, color = "#000000", font: Font): Promise<Image> {
+        this.img = this.img?.text(text, scale, x, y, color, await font.font);
+        if (!this.img) throw new Error("Image is empty");
         return this;
     }
 
     /**
-     * Set the font for the image.
-     *
-     * @param {Font} font - The font to be set for the image.
+     * Generates an image with the specified image as overlay.
+     * 
+     * @param {Image} img - The image to overlay.
+     * @param {number} x - The x-coordinate of the overlay.
+     * @param {number} y - The y-coordinate of the overlay.
+     * @return {Promise<Image>} - The updated image.
      */
-    set font(font: Font) {
-        (async () => {
-            if (this.img) this.img.font = await font.font;
-        })();
-    }
-
-    /**
-     * Sets the font for the image.
-     *
-     * @param {Font} font - The font to be set.
-     * @return {Image} - The updated image object.
-     */
-    set_font(font: Font): Image {
-        (async () => {
-            if (this.img) this.img.font = await font.font;
-        })();
+    async image(img: Image, x: number, y: number): Promise<Image> {
+        this.img = this.img?.image(await img.#img, BigInt(x), BigInt(y));
+        if (!this.img) throw new Error("Image is empty");
         return this;
     }
 
@@ -80,6 +71,12 @@ export class Image {
      */
     get as_base64(): string {
         return encodeB64(this.img?.to_bytes() || new Uint8Array());
+    }
+
+    resize(width: number, height: number): Image {
+        this.img = this.img?.resize(width, height);
+        if (!this.img) throw new Error("Image is empty");
+        return this;
     }
 }
 
