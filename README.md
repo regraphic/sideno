@@ -94,5 +94,10 @@ Vercel gave us free **Pro Plan** access to host the documentation and other webs
 MacStadium gave us free **Mac Mini Server** to host the API and for builds.
 
 [![Powered By Vercel](https://res.cloudinary.com/zype/image/upload/ShareImage/powered-by-vercel.png)](https://vercel.com/?utm_source=zypeoss&utm_campaign=oss)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fregraphic%2Fsideno.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fregraphic%2Fsideno?ref=badge_shield)
 
 <img src="https://res.cloudinary.com/zype/image/upload/ShareImage/MacStadium" height="44" width="212">
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fregraphic%2Fsideno.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fregraphic%2Fsideno?ref=badge_large)
