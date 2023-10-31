@@ -1,7 +1,6 @@
-import { SiImage } from "../deps.ts";
+import { SiImage, encodeB64 } from "../deps.ts";
 import Font from "./font.ts";
-import {encodeB64} from "../deps.ts";
-import { Preset } from "./preset.ts";
+import Preset from "./preset.ts";
 export class Image {
     img?: SiImage;
     #img: Promise<SiImage>;
@@ -37,7 +36,9 @@ export class Image {
      */
     async text(text: string, scale: number, x: number, y: number, color = "#000000", font: Font): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
-        this.img = this.img?.text(text, scale, x, y, color, await font.font);
+        await font.init();
+        if (!font.font) throw new Error("Could not load font.");
+        this.img = this.img?.text(text, scale, x, y, color, font.font);
         return this;
     }
 
@@ -76,7 +77,7 @@ export class Image {
     async preset(preset: Preset, values: object): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
         const final = await preset.cb(this, values);
-        this.img = final.img;
+        Object.assign(this, final);
         return this;
     }
 
