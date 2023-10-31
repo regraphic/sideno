@@ -39,6 +39,7 @@ export class Image {
         await font.init();
         if (!font.font) throw new Error("Could not load font.");
         console.log(this.img);
+        console.log(font.font);
         this.img = this.img?.text(text, scale, x, y, color, font.font);
         return this;
     }
