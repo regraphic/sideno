@@ -3,8 +3,8 @@ import { Image, Font } from "../mod.ts";
 let font = new Font("https://github.com/Zype-Z/ShareImage.js/raw/main/assets/fonts/sirin-stencil.ttf");
 let img = new Image("https://res.cloudinary.com/zype/image/upload/regraphic");
 await img.init();
-console.log(img.img);
 
 await img.text("Hello, World!", 64, 480, 254, font);
+await img.text("Hello, Tagline!", 64, 480, 300, font);
 
 console.info("Image:", img.as_base64);
