@@ -33,7 +33,7 @@ jobs:
 
       - name: Typecheck
         run: |
-          deno check -Ar src/**.ts
+          deno check src/**.ts
 
       - name: Build
         run: |
