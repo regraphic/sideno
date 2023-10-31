@@ -27,15 +27,17 @@ jobs:
           wasm-pack --version
 
       - name: Install Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Typecheck
         run: |
-          curl -fsSL https://deno.land/x/install/install.sh | sh
-          export DENO_INSTALL="$HOME/.deno"
-          export PATH="$DENO_INSTALL/bin:$PATH"
-          deno --version
+          deno check -Ar src/**.ts
 
       - name: Build
         run: |
-          ~/.deno/bin/deno run -Ar scripts/build.ts
+          deno run -Ar scripts/build.ts
 
       - name: Read version from release.json
         id: read_version
