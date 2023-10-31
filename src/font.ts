@@ -11,7 +11,7 @@ export class Font {
         }
     }
 
-    async init(): Font {
+    async init(): Promise<Font> {
         this.font = await this.#font;
         return this;
     }
