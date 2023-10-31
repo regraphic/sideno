@@ -31,13 +31,13 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Typecheck
-        run: |
-          deno check src/**.ts
-
       - name: Build
         run: |
           deno run -Ar scripts/build.ts
+
+      - name: Typecheck
+        run: |
+          deno check src/**.ts
 
       - name: Read version from release.json
         id: read_version
