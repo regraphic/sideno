@@ -51,6 +51,7 @@ import si from "https://deno.land/x/sideno/mod.ts";
 let img = new si.Image("IMG_URL_OR_UINT8ARRAY_BUFFER");
 await img.init(); // Required
 let font = new Font("INITIAL_FONT_URL_OR_UINT8ARRAY_BUFFER");
+await font.init(); // Required as of v2.2.3
 
 await img
     .text("Hello, Title", 64, 480, 254, font)
