@@ -7,4 +7,4 @@ console.log(img.img);
 
 await img.text("Hello, World!", 64, 480, 254, font);
 
-console.info("Dimensions:", (img.width + "x" + img.height));
+console.info("Image:", img.as_base64);
