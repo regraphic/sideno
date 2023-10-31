@@ -37,8 +37,6 @@ export class Image {
     async text(text: string, scale: number, x: number, y: number, font: Font, color: string = "#000000"): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
         if (!font.font) throw new Error("Could not load font.");
-        console.log(this.img);
-        console.log(font.font);
         this.img = this.img?.text(text, scale, x, y, color, font.font);
         return this;
     }
