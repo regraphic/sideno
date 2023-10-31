@@ -30,12 +30,13 @@ export class Image {
      * @param {number} scale - The scale of the text.
      * @param {number} x - The x-coordinate of the text.
      * @param {number} y - The y-coordinate of the text.
+     * @param {Font} font - The font to use.
      * @param {string} color - The color of the text (optional, default value is #000000).
-     * @param {Font} font - The font to use
      * @return {Promise<Image>} - The updated image.
      */
-    async text(text: string, scale: number, x: number, y: number, color = "#000000", font: Font): Promise<Image> {
+    async text(text: string, scale: number, x: number, y: number, font: Font, color: string = "#000000"): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
+        console.log(font);
         await font.init();
         if (!font.font) throw new Error("Could not load font.");
         this.img = this.img?.text(text, scale, x, y, color, font.font);
