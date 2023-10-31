@@ -13,6 +13,8 @@ export class Font {
 
     async init(): Promise<Font> {
         this.font = await this.#font;
+        console.log(#font);
+        console.log(font);
         return this;
     }
 }
