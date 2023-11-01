@@ -33,11 +33,15 @@ jobs:
 
       - name: Build
         run: |
-          deno run -Ar scripts/build.ts
+          deno task build
 
       - name: Typecheck
         run: |
           deno check src/**.ts
+
+      - name: Test
+        run: |
+          deno task test
 
       - name: Read version from release.json
         id: read_version
