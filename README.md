@@ -15,12 +15,14 @@ In Node.JS, you can use the good'ol `shareimage` package. The `v5.*.*` versions 
 ```sh
 npm i shareimage
 
+
 ```
 
 Or:
 
 ```sh
 yarn add shareimage
+
 
 ```
 
@@ -34,6 +36,7 @@ To use it, simply import it from [deno.land](https://deno.land/x/sideno):
 
 ```ts
 import si from "https://deno.land/x/sideno/mod.ts"; // LATEST VERSION
+
 
 ```
 
@@ -53,13 +56,14 @@ await img.init(); // Required
 let font = new Font("INITIAL_FONT_URL_OR_UINT8ARRAY_BUFFER");
 await font.init(); // Required as of v2.2.3
 
-await img
+img
     .text("Hello, Title", 64, 480, 254, font)
     .text("Hello, tagline", 48, 480, 320, font);
     // Supports chaining!
 
 let bytes = img.as_bytes;
 let duri = img.as_base64;
+
 
 ```
 
@@ -83,6 +87,7 @@ To build it, simply run the `scripts/build.ts` script with Deno:
 
 ```ts
 deno run -Ar scripts/build.ts
+
 
 ```
 
