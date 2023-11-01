@@ -8,9 +8,10 @@ let f_bytes = new Uint8Array(await font.arrayBuffer());
 
 Deno.bench("si_new", {group: "si", baseline: true}, async () => {
     let font = new si_new.Font(f_bytes);
-    let img = new si_new.Image(bytes, font);
+    await font.init();
+    let img = new si_new.Image(bytes);
     await img.init();
-    img.text("Hello, World!", 64, 480, 254);
+    img.text("Hello, World!", 64, 480, 254, font);
     let _ = img.as_bytes;
 })
 
