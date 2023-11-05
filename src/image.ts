@@ -83,6 +83,14 @@ export class Image {
         return encodeB64(this.img?.to_bytes() || new Uint8Array());
     }
 
+    /**
+     * Load a preset
+     *
+     * @param {Preset} preset - The preset to load.
+     * @param {object} values - The values to pass into the Preset.
+     *
+     * @return {Image} updated image with the Preset loaded.
+     */
     async preset(preset: Preset, values: object): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
         const final = await preset.cb(this, values);
@@ -90,11 +98,19 @@ export class Image {
         return this;
     }
 
-    /*resize(width: number, height: number): Image {
+    /**
+     * Resizes the image
+     *
+     * @param {number} width - The new width.
+     * @param {number} height - The new height.
+     *
+     * @return {Image} New Image with updated size.
+     */
+    resize(width: number, height: number): Image {
         this.img = this.img?.resize(width, height);
         if (!this.img) throw new Error("Image is empty");
         return this;
-    }*/
+    }
 }
 
 export default Image;
