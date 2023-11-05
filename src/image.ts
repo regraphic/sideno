@@ -61,7 +61,7 @@ export class Image {
      */
     async image(img: Image, x: number, y: number): Promise<Image> {
         if (!this.img) throw new Error("Image is empty");
-        this.img = this.img?.image(await img.#img, BigInt(x), BigInt(y));
+        this.img = this.img?.image(await img.#img, x, y);
         return this;
     }
 
@@ -90,11 +90,11 @@ export class Image {
         return this;
     }
 
-    resize(width: number, height: number): Image {
+    /*resize(width: number, height: number): Image {
         this.img = this.img?.resize(width, height);
         if (!this.img) throw new Error("Image is empty");
         return this;
-    }
+    }*/
 }
 
 export default Image;
