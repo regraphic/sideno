@@ -3,8 +3,8 @@ on:
     workflow_dispatch:
 
 jobs:
-  test:
-    name: Test
+  bench:
+    name: Benchmark
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,6 +31,6 @@ jobs:
         run: |
           deno task build
 
-      - name: Test
+      - name: Bench
         run: |
-          deno task test
+          deno bench -Ar bench/bench.ts
