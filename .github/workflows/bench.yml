@@ -1,10 +1,10 @@
-name: Test
+name: Benchmark
 on:
     workflow_dispatch:
 
 jobs:
-  test:
-    name: Test
+  bench:
+    name: Benchmark
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,8 +29,8 @@ jobs:
 
       - name: Build
         run: |
-          deno task build
+          SKIA_BINARIES_URL="https://github.com/rust-skia/skia-binaries/releases/download/0.68.0/skia-binaries-f0bea3ad919500904bb9-wasm32-unknown-emscripten.tar.gz" deno task build
 
-      - name: Test
+      - name: Bench
         run: |
-          deno task test
+          deno bench -Ar bench/bench.ts
