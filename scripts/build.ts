@@ -56,6 +56,9 @@ await Deno.rename("rs/pkg", "./pkg");
 await Deno.remove("rs", {recursive: true});
 await Deno.remove("pkg/README.md", {recursive: true});
 await Deno.remove("pkg/.gitignore", {recursive: true});
+const old = await Deno.readTextFile("pkg/si_img.js");
+const _new = old.replace("const wasm_url = new URL('si_img_bg.wasm', import.meta.url);\nlet wasmCode = '';\nswitch (wasm_url.protocol) {\n    case 'file:':\n    wasmCode = await Deno.readFile(wasm_url);\n    break\n    case 'https:':\n    case 'http:':\n    wasmCode = await (await fetch(wasm_url)).arrayBuffer();\n    break\n    default:\n    throw new Error(`Unsupported protocol: ${wasm_url.protocol}`);\n}", "const wasm_url = new URL('si_img_bg.wasm', import.meta.url);\nconst response = await fetch(wasm_url);\nif (!response.ok) {\n    throw new Error(`Failed to fetch WebAssembly module: ${response.statusText}`);\n}\nconst { instance } = await WebAssembly.instantiateStreaming(response, imports);\nconst wasm = instance.exports;\nconst wasmInstance = (await WebAssembly.instantiate(wasmCode, imports)).instance;\nconst wasm = wasmInstance.exports;");
+await Deno.writeTextFile("pkg/si_img.js", _new);
 
 await Deno.stdout.write(new TextEncoder().encode("\r" + green("Cleanup done!") + "\n"));
 
