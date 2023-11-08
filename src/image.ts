@@ -1,4 +1,4 @@
-import { SiImage, encodeB64 } from "../deps.ts";
+import { SiImage, encodeB64, TextOptions } from "../deps.ts";
 import Font from "./font.ts";
 import Preset from "./preset.ts";
 export class Image {
@@ -37,7 +37,7 @@ export class Image {
     text(text: string, scale: number, x: number, y: number, font: Font, color = "#000000"): Image {
         if (!this.img) throw new Error("Image is empty");
         if (!font.font) throw new Error("Could not load font.");
-        this.img = this.img?.text(text, scale, x, y, color, font.font);
+        this.img = this.img?.text(text, scale, x, y, color, font.font, TextOptions.default());
         return this;
     }
 
