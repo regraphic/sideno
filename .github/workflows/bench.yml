@@ -29,8 +29,8 @@ jobs:
 
       - name: Build
         run: |
-          SKIA_BINARIES_URL="https://github.com/rust-skia/skia-binaries/releases/download/0.68.0/skia-binaries-f0bea3ad919500904bb9-wasm32-unknown-emscripten.tar.gz" deno task build
+          deno task build --bypass-pkg-check --bypass-rs-check
 
       - name: Bench
         run: |
-          deno bench -Ar bench/bench.ts
+          deno task bench

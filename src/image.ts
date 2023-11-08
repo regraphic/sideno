@@ -34,7 +34,7 @@ export class Image {
      * @param {string} color - The color of the text (optional, default value is #000000).
      * @return {Promise<Image>} - The updated image.
      */
-    text(text: string, scale: number, x: number, y: number, font: Font, color: string = "#000000"): Image {
+    text(text: string, scale: number, x: number, y: number, font: Font, color = "#000000"): Image {
         if (!this.img) throw new Error("Image is empty");
         if (!font.font) throw new Error("Could not load font.");
         this.img = this.img?.text(text, scale, x, y, color, font.font);
@@ -110,6 +110,11 @@ export class Image {
         this.img = this.img?.resize(width, height);
         if (!this.img) throw new Error("Image is empty");
         return this;
+    }
+
+    async [Symbol.dispose]() {
+        await this.img?.free();
+        delete this.img;
     }
 }
 

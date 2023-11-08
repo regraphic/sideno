@@ -15,6 +15,11 @@ export class Font {
         this.font = await this.#font;
         return this;
     }
+
+    async [Symbol.dispose]() {
+        await this.font?.free();
+        delete this.font;
+    }
 }
 
 export default Font;
