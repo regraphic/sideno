@@ -58,6 +58,7 @@ jobs:
           git config user.name "Rajdeep Malakar"
           git config user.email "rajdeepm.dev@gmail.com"
           git add -A
+          git add pkg -f
           git commit -m "RELEASE $RELEASE_VERSION"
           git tag $RELEASE_VERSION -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_VERSION
