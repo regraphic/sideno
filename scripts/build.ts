@@ -1,7 +1,7 @@
 import { yellow, green, red } from "https://deno.land/std@0.204.0/fmt/colors.ts";
 import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 // import Logger from "https://raw.githubusercontent.com/deno-library/logger/d34e9197f4477446b5b80ebc4524804efeef1674/mod.ts";
-import Logger from "https://raw.githubusercontent.com/Rajdeep-TG/logger/2ff4777469fda6329c5a4c5afa2471f8fd7ae363/mod.ts";
+import Logger from "https://deno.land/x/logger@v1.1.3/mod.ts";
 const logger = new Logger();
 
 const flags = parse(Deno.args, {
