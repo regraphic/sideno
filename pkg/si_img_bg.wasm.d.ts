@@ -1,0 +1,33 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export function __wbg_sifont_free(a: number): void;
+export function sifont_new(a: number, b: number): number;
+export function sifont_from_vec(a: number, b: number): number;
+export function sifont_from_network_async(a: number, b: number): number;
+export function sifont_from_network(a: number, b: number): void;
+export function __wbg_textoptions_free(a: number): void;
+export function __wbg_get_textoptions_letter_spacing(a: number): number;
+export function __wbg_set_textoptions_letter_spacing(a: number, b: number): void;
+export function __wbg_get_textoptions_space_width(a: number): number;
+export function __wbg_set_textoptions_space_width(a: number, b: number): void;
+export function textoptions_default(): number;
+export function __wbg_siimage_free(a: number): void;
+export function siimage_new(a: number, b: number): number;
+export function siimage_from_vec(a: number, b: number): number;
+export function siimage_from_network_async(a: number, b: number): number;
+export function siimage_from_network(a: number, b: number): void;
+export function siimage_text(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number): number;
+export function siimage_image(a: number, b: number, c: number, d: number): number;
+export function siimage_to_bytes(a: number, b: number): void;
+export function siimage_height(a: number): number;
+export function siimage_width(a: number): number;
+export function siimage_resize(a: number, b: number, c: number): number;
+export function __wbindgen_malloc(a: number, b: number): number;
+export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
+export const __wbindgen_export_2: WebAssembly.Table;
+export function wasm_bindgen__convert__closures__invoke1_mut__h273cfbc3e0d9a401(a: number, b: number, c: number): void;
+export function __wbindgen_add_to_stack_pointer(a: number): number;
+export function __wbindgen_free(a: number, b: number, c: number): void;
+export function __wbindgen_exn_store(a: number): void;
+export function wasm_bindgen__convert__closures__invoke2_mut__h5388ae7bd9551f38(a: number, b: number, c: number, d: number): void;
