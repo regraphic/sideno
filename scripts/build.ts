@@ -72,7 +72,7 @@ var { code, stderr } = (!flags["ignore-rs-check"]) ? await git_clone.output() : 
 
 if ((code !== 0)) {
     logger.error("[soc::git] Failed to clone si-rs.", new Error("GIT_CLONE_FAILED"));
-    logger.error(stderr);
+    logger.error(new TextDecoder().decode(stderr));
     Deno.exit(1);
 } else {
     logger.info("[soc::git] Successfully cloned si-rs");
@@ -88,7 +88,7 @@ if ((code !== 0)) {
         var { code, stderr } = await git_clone.output();
         if ((code !== 0)) {
             logger.error("[soc::git] Failed to apply patch.", new Error("GIT_PATCH_FAILED"));
-            logger.error(stderr);
+            logger.error(new TextDecoder().decode(stderr));
             Deno.exit(1);
         } else {
             logger.info("[soc::git] Successfully applied patch");
@@ -108,7 +108,7 @@ var { code, stdout, stderr } = (!flags["ignore-pkg-check"]) ? await wasm_pack_bu
 
 if ((code !== 0)) {
     logger.error("[soc::wasm-pack] Failed to build si-rs.", new Error("WASM_BUILD_FAILED"));
-    logger.error(stderr);
+    logger.error(new TextDecoder().decode(stderr));
     Deno.exit(1);
 } else {
     logger.info("[soc::wasm-pack] Successfully built si-rs");
