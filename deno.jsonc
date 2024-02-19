@@ -9,6 +9,6 @@
         "bench": "deno bench -Ar bench/*.ts"
     },
     "imports": {
-        "@std/encoding/": "jsr:@std/encoding@0.216.0/"
+        "@std/encoding": "jsr:@std/encoding@0.216.0"
     }
 }
