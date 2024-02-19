@@ -31,6 +31,10 @@ jobs:
         run: |
           deno task build --bypass-pkg-check --bypass-rs-check
 
+      - name: Apply Patch
+        run: |
+          sed -i "%s/!:/:/g" pkg/si_img.d.ts
+
       - name: Test
         run: |
           deno task test
