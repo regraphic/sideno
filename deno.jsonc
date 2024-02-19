@@ -7,5 +7,8 @@
         "test": "deno test -Ar tests/*.ts",
         "check": "deno check **/*.ts",
         "bench": "deno bench -Ar bench/*.ts"
+    },
+    "imports": {
+        "@std/encoding/": "jsr:@std/encoding@0.216.0/"
     }
 }
