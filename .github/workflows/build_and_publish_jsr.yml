@@ -40,6 +40,7 @@ jobs:
       - name: Apply Patch
         run: |
           sed -i "s/!:/:/g" pkg/si_img.d.ts
+          cat pkg/si_img.d.ts
 
       - name: Typecheck
         run: |
@@ -49,5 +50,5 @@ jobs:
         run: |
           deno task test
           
-      - name: Publish to JSR
-        run: deno publish
+      #- name: Publish to JSR
+        #run: deno publish
