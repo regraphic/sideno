@@ -18,7 +18,7 @@ export class Image {
      *
      * @return {Promise<void>} - A Promise that resolves when the function is initialized.
      */
-    async init() {
+    async init(): Promise<Image> {
         this.img = await this.#img;
         return this;
     }
