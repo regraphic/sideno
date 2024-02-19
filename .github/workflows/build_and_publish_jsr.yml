@@ -48,6 +48,10 @@ jobs:
       - name: Test
         run: |
           deno task test
+
+      - name: Lint
+        run: |
+          deno lint
           
       - name: Publish to JSR
         run: deno publish --no-zap --allow-slow-types
