@@ -1,7 +1,12 @@
 {
     "name": "@regraphic/si",
     "version": "0.0.1",
-    "exports": "./mod.ts",
+    "exports": {
+        ".": "./mod.ts",
+        "./image": "./src/image.ts",
+        "./font": "./src/font.ts",
+        "./preset": "./src/preset.ts"
+    },
     "tasks": {
         "build": "deno run -Ar scripts/build.ts",
         "test": "deno test -Ar tests/*.ts",
