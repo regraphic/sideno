@@ -34,6 +34,8 @@ To use it, simply import it from [deno.land](https://deno.land/x/sideno):
 import si from "https://deno.land/x/sideno/mod.ts"; // LATEST VERSION
 ```
 
+> **Note**: You can also try the new JSR package by importing it from `jsr:@regraphic/si` instead!
+
 ## Usage
 
 > Note: Please use **v2.0.2** or higher versions, because **v2.0.0** and **v2.0.1** has a critical bug preventing it from even working.
