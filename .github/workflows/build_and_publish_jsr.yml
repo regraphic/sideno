@@ -50,4 +50,4 @@ jobs:
           deno task test
           
       - name: Publish to JSR
-        run: deno publish
+        run: deno publish --no-zap
