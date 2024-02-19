@@ -33,7 +33,7 @@ jobs:
 
       - name: Apply Patch
         run: |
-          sed -i "%s/!:/:/g" pkg/si_img.d.ts
+          sed -i "s/!:/:/g" pkg/si_img.d.ts
 
       - name: Test
         run: |
