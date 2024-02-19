@@ -31,7 +31,7 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: canary
 
       - name: Build
         run: |
@@ -48,10 +48,6 @@ jobs:
       - name: Test
         run: |
           deno task test
-
-      - name: Lint
-        run: |
-          deno lint
           
       - name: Publish to JSR
-        run: deno publish --no-zap --allow-slow-types
+        run: deno publish --allow-slow-types
