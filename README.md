@@ -1,5 +1,7 @@
 # ShareImage (or SI)
 
+[![deno doc](https://jsr.io/badges/@regraphic/si)](https://jsr.io/@regraphic/si)
+
 SI (pronounced `ess-eye`) is a Social Share Preview Image Generator.
 
 Don't get it? Well, it's the "thumbnail" of a website, or link, or anything.
